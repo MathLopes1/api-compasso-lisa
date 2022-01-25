@@ -22,6 +22,13 @@ const carSchema = mongoose.Schema({
         type: Number,
         required: true
     }
+    
 });
+
+carSchema.set('toJSON', {
+    transform: function (doc, ret, options) {
+        delete ret.__v;
+    }
+}); 
 const Car = mongoose.model('Veiculos', carSchema);
 module.exports = Car;

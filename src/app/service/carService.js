@@ -4,5 +4,9 @@ class CarService{
       const data = await carRepository.create(payload);
       return data;
     }
+    async find(payload) {
+      const data = await carRepository.find(payload);
+      return data;
+    }
 }
 module.exports = new CarService;
