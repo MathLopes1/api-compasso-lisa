@@ -8,6 +8,14 @@ class CarRepository {
     async find(payload) {
         return carSchema.find(payload);
     };
+
+    async findId(id) {
+        return carSchema.findOne({ _id: id });
+      }
+
+    async delete(id) {
+        return carSchema.deleteOne({_id: id});
+      }
 };
 
 
