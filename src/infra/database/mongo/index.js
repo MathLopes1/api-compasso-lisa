@@ -7,9 +7,8 @@ class Database {
   }
 
   connect() {
-    const db = process.env.DATABASE || 'mongodb://127.0.0.1:27017/apilisa'
+    const db = process.env.DATABASE || 'mongodb://127.0.0.1:27017/apilisa';
     return mongoose.connect(db);
   }
-};
-
+}
 module.exports = new Database().connect();

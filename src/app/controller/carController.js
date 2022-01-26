@@ -49,6 +49,30 @@ class CarController {
       });
     }
   }
+  async update(req, res) {
+
+    const id = req.params.id;
+    const data = req.body;
+
+    try {
+      const car = await carService.findId(id)
+      if (!car) {
+        res.status(404).json({
+          'message': 'Bad request',
+          'details': [{ 'message': error }]
+        })
+      }
+
+      const updatedCar = await carService.update(id, data);
+      res.status(200).json(updatedCar);
+    } catch (error) {
+      return res.status(400).json({
+        'message': 'bad request',
+        'details': [{ 'message': error.message }]
+      })
+
+    }
+  }
 }
 
 module.exports = new CarController;
