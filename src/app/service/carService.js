@@ -1,4 +1,4 @@
-const carRepository = require('../repository/carRepository.js')
+const carRepository = require('../repository/carRepository.js');
 class CarService {
   async create(payload) {
     const data = await carRepository.create(payload);

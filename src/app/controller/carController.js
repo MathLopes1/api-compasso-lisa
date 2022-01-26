@@ -11,7 +11,8 @@ class CarController {
         'acessorios': data.acessorios,
         'quantidadePassageiros': data.quantidadePassageiros
       });
-    } catch (error) {
+    } 
+    catch (error) {
       return res.status(400).json({
         'message': 'bad request',
         'details': [{ 'message': error.message }]
@@ -24,7 +25,8 @@ class CarController {
       return res.status(200).json({
         'veiculos': data
       });
-    } catch (error) {
+    } 
+    catch (error) {
       return res.status(400).json({
         'message': 'bad request',
         'details': [{ 'message': error.message }]
@@ -37,12 +39,16 @@ class CarController {
       const car = await carService.findId({ _id: id });
 
       if (!car) {
-        return res.status(404).json({ message: 'Id not found' });
+        return res.status(404).json({
+          'message': 'Bad request',
+          'details': [{ 'message': 'Id not found' }]
+        });
       }
 
       await carService.delete({ _id: id });
       return res.status(204).json();
-    } catch (error) {
+    } 
+    catch (error) {
       return res.status(400).json({
         'message': 'Bad request',
         'details': [{ 'message': error }]
@@ -53,24 +59,22 @@ class CarController {
 
     const id = req.params.id;
     const data = req.body;
-
     try {
-      const car = await carService.findId(id)
+      const car = await carService.findId(id);
       if (!car) {
         res.status(404).json({
           'message': 'Bad request',
-          'details': [{ 'message': error }]
-        })
+          'details': [{ 'message': 'Id not found' }]
+        });
       }
-
       const updatedCar = await carService.update(id, data);
       res.status(200).json(updatedCar);
-    } catch (error) {
+    }
+    catch (error) {
       return res.status(400).json({
         'message': 'bad request',
         'details': [{ 'message': error.message }]
-      })
-
+      });
     }
   }
 }
