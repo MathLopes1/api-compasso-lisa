@@ -27,5 +27,6 @@ carSchema.set('toJSON', {
     delete ret.__v;
   }
 }); 
+
 const Car = mongoose.model('Veiculos', carSchema);
 module.exports = Car;

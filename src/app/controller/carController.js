@@ -21,7 +21,7 @@ class CarController {
   }
   async find(req, res) {
     try {
-      const data = await carService.find({});
+      const data = await carService.find(req.query);
       return res.status(200).json({
         'veiculos': data
       });
