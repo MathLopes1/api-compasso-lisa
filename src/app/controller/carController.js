@@ -21,7 +21,7 @@ class CarController {
   }
   async find(req, res) {
     try {
-      const data = await carService.find();
+      const data = await carService.find({});
       return res.status(200).json({
         'veiculos': data
       });
@@ -71,6 +71,26 @@ class CarController {
       res.status(200).json(updatedCar);
     }
     catch (error) {
+      return res.status(400).json({
+        'message': 'bad request',
+        'details': [{ 'message': error.message }]
+      });
+    }
+  }
+  async findId (req, res) {
+    const { id } = req.params;
+    try {
+      const car = await carService.findId(id);
+      if (!car) {
+        return res.status(404).json({
+          'message': 'Bad request',
+          'details': [{ 'message': 'Id not found' }]
+        });
+      }
+      return res.status(200).json({
+        'veiculos': car
+      });
+    } catch (error) {
       return res.status(400).json({
         'message': 'bad request',
         'details': [{ 'message': error.message }]

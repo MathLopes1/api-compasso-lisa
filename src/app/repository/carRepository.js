@@ -18,4 +18,5 @@ class CarRepository {
     return carSchema.findOne({ _id: id });
   }
 }
+
 module.exports = new CarRepository;
