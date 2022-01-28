@@ -10,6 +10,10 @@ class PeopleService {
     const people = this.formatCPF(data);
     return people;
   }
+  async find(payload) {
+    const data = await peopleRepository.find(payload);
+    return data;
+  }
   formatCPF(payload) {
     const cpf = payload.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     const people = Object.assign(payload, { cpf: cpf });
