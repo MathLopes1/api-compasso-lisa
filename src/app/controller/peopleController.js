@@ -55,7 +55,29 @@ class PeopleController {
         'details': [{ 'message': error }]
       });
     }
-  }  
+  }
+  async update(req, res) {
+
+    const id = req.params.id;
+    const data = req.body;
+    try {
+      const people = await peopleService.findId(id);
+      if (!people) {
+        res.status(404).json({
+          'message': 'Bad request',
+          'details': [{ 'message': 'Id not found' }]
+        });
+      }
+      const updatedPeople = await peopleService.update(id, data);
+      res.status(200).json(updatedPeople);
+    }
+    catch (error) {
+      return res.status(400).json({
+        'message': 'bad request',
+        'details': [{ 'message': error.message }]
+      });
+    }
+  }    
 }
 
 module.exports = new PeopleController;

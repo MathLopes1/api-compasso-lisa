@@ -13,6 +13,10 @@ class PeopleRepository {
   async delete(id) {
     return peopleSchema.deleteOne({ _id: id });
   }
+  async update(id, payload) {
+    await peopleSchema.updateOne({ _id: id }, payload);
+    return peopleSchema.findOne({ _id: id });
+  }
 }
 
 module.exports = new PeopleRepository;

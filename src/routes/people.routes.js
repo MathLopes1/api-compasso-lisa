@@ -5,5 +5,6 @@ module.exports = (server, routes, prefix = '/api/v1/people') => {
   routes.post('/',createValidation, PeopleController.create);
   routes.get('/', PeopleController.find);
   routes.delete('/:id', PeopleController.delete);
+  routes.put('/:id', createValidation,PeopleController.update);
   server.use(prefix, routes);
 };

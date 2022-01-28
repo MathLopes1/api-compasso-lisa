@@ -20,7 +20,11 @@ class PeopleService {
   async delete(id) {
     const people = await peopleRepository.delete(id);
     return people;
-  }  
+  } 
+  async update(id, payload) {
+    const data = await peopleRepository.update(id, payload);
+    return data;
+  }
   formatCPF(payload) {
     const cpf = payload.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     const people = Object.assign(payload, { cpf: cpf });

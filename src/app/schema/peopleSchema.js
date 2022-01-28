@@ -9,7 +9,7 @@ const peopleSchema = mongoose.Schema({
     type: String,
     requerid: true   
   },
-  data_nascimentoo: {
+  data_nascimento: {
     type: String,
     requerid: true
   },
