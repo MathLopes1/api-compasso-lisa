@@ -1,10 +1,17 @@
 const Joi = require('joi').extend(require('@joi/date'));
+const validaCpf = require('./validateCpf.js');
 
 module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
       nome: Joi.string().required(),
-      cpf: Joi.string().pattern(/^[0-9]+$/, 'numbers').min(11).max(11),
+      cpf: Joi.string().min(11).max(11).required().custom((value,help)=>{
+        if(validaCpf(value) === false){
+          return help.message('Invalid cpf, enter a valid one');
+        }else{
+          return true;
+        }
+      }),
       data_nascimento: Joi.date().format('DD/MM/YYYY').less('2004-01-01').max('now').required(),
       email: Joi.string().email().required(),
       senha: Joi.string().min(6).required(),
