@@ -5,9 +5,9 @@ module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
       nome: Joi.string().required(),
-      cpf: Joi.string().min(11).max(11).required().custom((value,help)=>{
+      cpf: Joi.string().min(11).max(11).required().custom((value)=>{
         if(!validateCpf(value)){
-          return help.message('Invalid cpf, enter a valid one');
+          return res.json('Invalid cpf, enter a valid one');
         }else{
           return true;
         }
