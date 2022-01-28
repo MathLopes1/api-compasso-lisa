@@ -77,7 +77,27 @@ class PeopleController {
         'details': [{ 'message': error.message }]
       });
     }
-  }    
+  }
+  async findId (req, res) {
+    const { id } = req.params;
+    try {
+      const people = await peopleService.findId(id);
+      if (!people) {
+        return res.status(404).json({
+          'message': 'Bad request',
+          'details': [{ 'message': 'Id not found' }]
+        });
+      }
+      return res.status(200).json({
+        'veiculos': people
+      });
+    } catch (error) {
+      return res.status(400).json({
+        'message': 'bad request',
+        'details': [{ 'message': error.message }]
+      });
+    }
+  }      
 }
 
 module.exports = new PeopleController;
