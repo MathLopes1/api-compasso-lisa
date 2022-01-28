@@ -14,6 +14,13 @@ class PeopleService {
     const data = await peopleRepository.find(payload);
     return data;
   }
+  async findId(id) {
+    return peopleRepository.findId(id);
+  } 
+  async delete(id) {
+    const people = await peopleRepository.delete(id);
+    return people;
+  }  
   formatCPF(payload) {
     const cpf = payload.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     const people = Object.assign(payload, { cpf: cpf });

@@ -7,6 +7,12 @@ class PeopleRepository {
   async find(payload) {
     return peopleSchema.find(payload);
   }
+  async findId(id) {
+    return peopleSchema.findOne({ _id: id });
+  }
+  async delete(id) {
+    return peopleSchema.deleteOne({ _id: id });
+  }
 }
 
 module.exports = new PeopleRepository;
