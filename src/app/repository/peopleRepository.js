@@ -5,7 +5,24 @@ class PeopleRepository {
     return peopleSchema.create(payload);
   }
   async find(payload) {
-    return peopleSchema.find(payload);
+    const myCustomLabels = {
+      totalDocs: 'total',
+      docs: 'Pessoas',
+      page: 'offset',
+      nextPage: false,
+      prevPage: false,
+      totalPages: 'offsets',
+      pagingCounter: false,
+      meta: false,
+      hasPrevPage: false,
+      hasNextPage: false
+    };
+    const options = {
+      page: 1,
+      limit: 100,
+      customLabels: myCustomLabels
+    };
+    return peopleSchema.paginate(payload,options,{});
   }
   async findId(id) {
     return peopleSchema.findOne({ _id: id });

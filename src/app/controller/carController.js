@@ -22,9 +22,7 @@ class CarController {
   async find(req, res) {
     try {
       const data = await carService.find(req.query);
-      return res.status(200).json({
-        'veiculos': data
-      });
+      return res.status(200).json(data);
     } 
     catch (error) {
       return res.status(400).json({
