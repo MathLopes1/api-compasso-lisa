@@ -4,14 +4,7 @@ class PeopleController {
   async create(req, res){
     try {
       const data = await peopleService.create(req.body);
-      return res.status(201).json({
-        'nome': data.nome,
-        'cpf': data.cpf,
-        'data_nascimento': data.data_nascimento,
-        'email': data.email,
-        'senha': data.senha,
-        'habilitado': data.habilitado
-      });
+      return res.status(201).json(data);
     } 
     catch (error) {
       return res.status(400).json({

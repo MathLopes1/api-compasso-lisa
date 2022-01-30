@@ -4,13 +4,7 @@ class CarController {
   async create(req, res) {
     try {
       const data = await carService.create(req.body);
-      return res.status(201).json({
-        'modelo': data.modelo,
-        'cor': data.cor,
-        'ano': data.ano,
-        'acessorios': data.acessorios,
-        'quantidadePassageiros': data.quantidadePassageiros
-      });
+      return res.status(201).json(data);
     } 
     catch (error) {
       return res.status(400).json({

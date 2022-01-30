@@ -20,14 +20,14 @@ const carSchema = mongoose.Schema({
   },
   quantidadePassageiros: {
     type: Number,
-    required: true
+    required: true,
   }
 });
-carSchema.set('toJSON', {
-  transform: function (doc, ret) {
-    delete ret.__v;
-  }
-}); 
+carSchema.method('toJSON', function () {
+  // eslint-disable-next-line no-unused-vars
+  const { __v, ...car } = this.toObject();
+  return car;
+});
 
 carSchema.plugin(mongoosePaginate);
 const Car = mongoose.model('Veiculos', carSchema);
