@@ -1,16 +1,11 @@
 const carService = require('../service/carService');
+const NotFound = require('../utils/Error/notFound.js');
 
 class CarController {
   async create(req, res) {
     try {
       const data = await carService.create(req.body);
-      return res.status(201).json({
-        'modelo': data.modelo,
-        'cor': data.cor,
-        'ano': data.ano,
-        'acessorios': data.acessorios,
-        'quantidadePassageiros': data.quantidadePassageiros
-      });
+      return res.status(201).json(data);
     } 
     catch (error) {
       return res.status(400).json({
@@ -37,12 +32,8 @@ class CarController {
       const car = await carService.findId({ _id: id });
 
       if (!car) {
-        return res.status(404).json({
-          'message': 'Bad request',
-          'details': [{ 'message': 'Id not found' }]
-        });
+        throw new NotFound;
       }
-
       await carService.delete({ _id: id });
       return res.status(204).json();
     } 
@@ -60,10 +51,7 @@ class CarController {
     try {
       const car = await carService.findId(id);
       if (!car) {
-        res.status(404).json({
-          'message': 'Bad request',
-          'details': [{ 'message': 'Id not found' }]
-        });
+        throw new NotFound;
       }
       const updatedCar = await carService.update(id, data);
       res.status(200).json(updatedCar);
@@ -80,10 +68,9 @@ class CarController {
     try {
       const car = await carService.findId(id);
       if (!car) {
-        return res.status(404).json({
-          'message': 'Bad request',
-          'details': [{ 'message': 'Id not found' }]
-        });
+        if (!car) {
+          throw new NotFound;
+        }
       }
       return res.status(200).json({
         'veiculos': car

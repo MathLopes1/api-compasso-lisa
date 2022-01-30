@@ -1,17 +1,11 @@
 const peopleService = require('../service/peopleService.js');
+const NotFound = require('../utils/Error/notFound.js');
 
 class PeopleController {
   async create(req, res){
     try {
       const data = await peopleService.create(req.body);
-      return res.status(201).json({
-        'nome': data.nome,
-        'cpf': data.cpf,
-        'data_nascimento': data.data_nascimento,
-        'email': data.email,
-        'senha': data.senha,
-        'habilitado': data.habilitado
-      });
+      return res.status(201).json(data);
     } 
     catch (error) {
       return res.status(400).json({
@@ -38,10 +32,7 @@ class PeopleController {
       const people = await peopleService.findId({ _id: id });
 
       if (!people) {
-        return res.status(404).json({
-          'message': 'Bad request',
-          'details': [{ 'message': 'Id not found' }]
-        });
+        throw new NotFound;
       }
 
       await peopleService.delete({ _id: id });
@@ -61,10 +52,7 @@ class PeopleController {
     try {
       const people = await peopleService.findId(id);
       if (!people) {
-        res.status(404).json({
-          'message': 'Bad request',
-          'details': [{ 'message': 'Id not found' }]
-        });
+        throw new NotFound;
       }
       const updatedPeople = await peopleService.update(id, data);
       res.status(200).json(updatedPeople);
@@ -81,10 +69,7 @@ class PeopleController {
     try {
       const people = await peopleService.findId(id);
       if (!people) {
-        return res.status(404).json({
-          'message': 'Bad request',
-          'details': [{ 'message': 'Id not found' }]
-        });
+        throw new NotFound;
       }
       return res.status(200).json({
         'veiculos': people

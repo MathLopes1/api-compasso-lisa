@@ -1,5 +1,5 @@
 const Joi = require('joi').extend(require('@joi/date'));
-const validateCpf = require('./validateCpf.js');
+const validateCpf = require('../../utils/validateCpf.js');
 
 module.exports = async (req, res, next) => {
   try {

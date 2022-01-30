@@ -1,6 +1,7 @@
 const peopleSchema = require('../schema/peopleSchema.js');
 const bcrypt = require('bcryptjs');
 const Token = require('../utils/generateToken.js');
+const NotFound = require('../utils/Error/userNotFound.js');
 
 class AuthenticateController {
   async authenticate (req, res) {
@@ -8,7 +9,7 @@ class AuthenticateController {
     try {
       const user = await peopleSchema.findOne({ email }).select('+senha');
       if(!user){
-        return res.status(400).send({error: 'User not found'});
+        throw new NotFound;
       }
       if(!await bcrypt.compare(senha, user.senha)){
         return res.status(400).send({error: 'Invalid password'});
