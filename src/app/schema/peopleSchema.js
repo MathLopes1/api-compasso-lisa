@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
+const bcrypt = require('bcryptjs');
 
 const peopleSchema = mongoose.Schema({
   nome: {
@@ -21,13 +22,21 @@ const peopleSchema = mongoose.Schema({
   },
   senha: {
     type: String,
-    requerid: true
+    requerid: true,
+    select: false
   },
   habilitado: {
     type: String, 
     enum: ['sim', 'não'],
     requerid: true
   }
+});
+
+peopleSchema.pre('save', async function (next) {
+  const hash = await bcrypt.hash(this.senha, 10);
+  this.senha = hash;
+
+  next();
 });
 
 peopleSchema.set('toJSON', {
