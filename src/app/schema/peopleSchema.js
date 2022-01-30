@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 const bcrypt = require('bcryptjs');
@@ -39,10 +40,9 @@ peopleSchema.pre('save', async function (next) {
   next();
 });
 
-peopleSchema.set('toJSON', {
-  transform: function (doc, ret) {
-    delete ret.__v;
-  }
+peopleSchema.method('toJSON', function () {
+  const { __v, ...people } = this.toObject();
+  return people;
 }); 
 
 peopleSchema.plugin(mongoosePaginate);
