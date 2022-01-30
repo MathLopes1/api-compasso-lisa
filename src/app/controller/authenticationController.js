@@ -1,5 +1,6 @@
 const peopleSchema = require('../schema/peopleSchema.js');
 const bcrypt = require('bcryptjs');
+const Token = require('../utils/generateToken.js');
 
 class AuthenticateController {
   async authenticate (req, res) {
@@ -12,8 +13,12 @@ class AuthenticateController {
       if(!await bcrypt.compare(senha, user.senha)){
         return res.status(400).send({error: 'Invalid password'});
       }
+
       user.senha = undefined;
-      res.send({user});        
+      
+      const token = Token({id: user.id});
+      
+      res.send({user, token});        
     } catch (error) {{
       return res.status(400).json({
         'message': 'Bad request',
