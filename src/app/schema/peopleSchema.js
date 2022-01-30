@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
+const Enum = require('../utils/Enums.js');
+
 const bcrypt = require('bcryptjs');
 
 const peopleSchema = mongoose.Schema({
@@ -27,7 +29,7 @@ const peopleSchema = mongoose.Schema({
   },
   habilitado: {
     type: String, 
-    enum: ['sim', 'não'],
+    enum: Enum.Habilitado,
     requerid: true
   }
 });
