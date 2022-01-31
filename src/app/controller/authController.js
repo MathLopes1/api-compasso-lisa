@@ -1,4 +1,4 @@
-const peopleSchema = require('../schema/peopleSchema.js');
+const authService = require('../service/authService.js');
 const bcrypt = require('bcryptjs');
 const Token = require('../utils/generateToken.js');
 const NotFound = require('../utils/Error/userNotFound.js');
@@ -7,7 +7,7 @@ class AuthenticateController {
   async authenticate (req, res) {
     const { email, senha } = req.body;
     try {
-      const user = await peopleSchema.findOne({ email }).select('+senha');
+      const user = await authService.findAuth({email});
       if(!user){
         throw new NotFound;
       }
