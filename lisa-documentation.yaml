@@ -187,7 +187,7 @@ paths:
           description: Veiculo não encontrado
           content:
             application/json: 
-              example: "não foi possivel cadastrar o Veiculo"
+              example: "não foi possivel Deletar o Veiculo"
         400:
           description: Body Error
           content:
@@ -396,3 +396,37 @@ paths:
           content:
             application/json:
               example: "Body error"
+  /authenticate:
+            post:
+              summary: Autenticar uma Pessoa
+              requestBody:
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                          senha:
+                            type: string
+              responses: 
+                  201:
+                    description: Sucesso
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties: 
+                            _id:
+                              type: string
+                            nome:
+                              type: string
+                            cpf: 
+                              type: string
+                            email:
+                              type: string
+                            habilitado:
+                              type: string
+                            token: 
+                              type: string
+
