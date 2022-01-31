@@ -193,3 +193,206 @@ paths:
           content:
             application/json:
               example: "Body error"  
+  /people:
+    post:
+      summary: Criar uma Pessoa.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                data_nascimento:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                habilitado:
+                  type: string
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Error
+          content:
+            application/json: 
+              example: "não foi possivel cadastrar a Pessoa"  
+    get:
+      summary: Retorna todas as Pessoas e uma específica.
+      parameters: 
+      - name: _id
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: nome
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: people_id
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cpf
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: data_nascimento
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: email
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: senha
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: habilitado
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Pessoas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        nome:
+                          type: string
+                        cpf: 
+                          type: string
+                        data_nascimento:
+                          type: number
+                        email:
+                          type: string
+                        senha:
+                          type: string
+                        habilitado:
+                          type: string
+        404:
+          description: Pessoa não encontrado
+          content:
+            application/json: 
+              example: "not found"
+  /people/{id}:
+    put:
+      summary: Atualiza uma Pessoa.
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                        nome:
+                          type: string
+                        people_id:
+                          type: string
+                        cpf: 
+                          type: string
+                        data_nascimento:
+                          type: number
+                        email:
+                          type: string
+                        senha:
+                          type: string
+                        habilitado:
+                          type: string
+      responses: 
+        200:
+          description: Atualizado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                        nome:
+                          type: string
+                        people_id:
+                          type: string
+                        cpf: 
+                          type: string
+                        data_nascimento:
+                          type: number
+                        email:
+                          type: string
+                        senha:
+                          type: string
+                        habilitado:
+                          type: string
+        404:
+          description: Pessoa não encontrada
+          content:
+            application/json: 
+              example: "não foi possivel cadastrar o funcionário"
+        400:
+          description: Body Error
+          content:
+            application/json:
+              example: "Body error"
+    delete:
+      summary: Deletar uma Pessoa.
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Excluida com sucesso
+        404:
+          description: Pessoa não encontrada
+          content:
+            application/json: 
+              example: "não foi possivel deletar a Pessoa"
+        400:
+          description: Body Error
+          content:
+            application/json:
+              example: "Body error"
