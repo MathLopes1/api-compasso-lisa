@@ -1,11 +1,13 @@
 const carController = require('../app/controller/carController');
-const createValidation = require('../app/validation/car/create.js');
+const validateBody = require('../app/validation/car/body.js');
+const validateId = require('../app/validation/id/id.js');
+const validateFind = require('../app/validation/car/findCar.js');
 
 module.exports = (server, routes, prefix = '/api/v1/car') => {
-  routes.post('/',createValidation,carController.create);
-  routes.get('/', carController.find);
-  routes.get('/:id',carController.findId);
-  routes.delete('/:id', carController.delete);
-  routes.put('/:id',createValidation,carController.update);
+  routes.post('/',validateBody, carController.create);
+  routes.get('/',validateFind, carController.find);
+  routes.get('/:id',validateId, validateFind, carController.findId);
+  routes.delete('/:id',validateId, carController.delete);
+  routes.put('/:id',validateId, validateBody, carController.update);
   server.use(prefix, routes);
 };
