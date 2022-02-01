@@ -1,6 +1,6 @@
 const authService = require('../service/authService.js');
 const bcrypt = require('bcryptjs');
-const Token = require('../utils/generateToken.js');
+const Token = require('../utils/Auth/generateToken.js');
 const NotFound = require('../utils/Error/userNotFound.js');
 
 class AuthenticateController {

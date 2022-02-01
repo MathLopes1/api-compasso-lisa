@@ -1,7 +1,9 @@
 exports.Habilitado = [
-  'Sim',
   'sim',
-  'Não',
   'não'
 ];
-
+exports.email =[
+  'com',
+  'br',
+  'net'
+];
