@@ -7,11 +7,15 @@ const bcrypt = require('bcryptjs');
 const peopleSchema = mongoose.Schema({
   nome: {
     type: String,
-    requerid: true
+    requerid: true,
+    minLength: 3,
+    maxLength: 40
   },
   cpf: {
     type: String,
-    requerid: true   
+    requerid: true,
+    minLength:11,
+    maxLength: 11   
   },
   data_nascimento: {
     type: String,
@@ -25,7 +29,8 @@ const peopleSchema = mongoose.Schema({
   senha: {
     type: String,
     requerid: true,
-    select: false
+    select: false,
+    minLength: 6
   },
   habilitado: {
     type: String, 
