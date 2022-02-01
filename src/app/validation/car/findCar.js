@@ -4,10 +4,10 @@ module.exports = async (req, res, next) => {
   try {
     const validation = Joi.object({
       modelo: Joi.string().min(2).max(25),
-      cor: Joi.string().min(2).max(25),
+      cor: Joi.string().min(3).max(20),
       ano: Joi.date().format('YYYY').min('1950-01-01').max('2022-12-31'),
-      acessorios: Joi.string().min(2).max(25),
-      quantidadePassageiros: Joi.number().min(1)
+      acessorios: Joi.string().min(3).max(25),
+      quantidadePassageiros: Joi.number().min(1).max(5)
     });
     const { error } = await validation.validate(req.query, { abortEarl: true });
     if (error) throw error;
