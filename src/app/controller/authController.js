@@ -1,7 +1,7 @@
 const authService = require('../service/authService.js');
 const bcrypt = require('bcryptjs');
 const Token = require('../utils/Auth/generateToken.js');
-const NotFound = require('../utils/Error/userNotFound.js');
+const Erros = require('../utils/Error/Erros.js');
 
 class AuthenticateController {
   async authenticate (req, res) {
@@ -9,10 +9,10 @@ class AuthenticateController {
     try {
       const user = await authService.findAuth({email});
       if(!user){
-        throw new NotFound;
+        return Erros.notFound(res, 'User not found');
       }
       if(!await bcrypt.compare(senha, user.senha)){
-        return res.status(400).send({error: 'Invalid password'});
+        return Erros.invalidPassword(res, 'Invalid password, try again with valid password');
       }
 
       user.senha = undefined;
@@ -21,10 +21,7 @@ class AuthenticateController {
       
       res.send({user, token});        
     } catch (error) {{
-      return res.status(400).json({
-        'message': 'Bad request',
-        'details': [{ 'message': error }]
-      });
+      return Erros.badRequest(res, error.message);
     }
     }
   }
