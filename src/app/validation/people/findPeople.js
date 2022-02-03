@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
       data_nascimento: Joi.date().format('DD/MM/YYYY').less('2004-01-01').max('now'),
       email: Joi.string().email({ minDomainSegments: 2, tlds: { allow:Enum.email }}),
       senha: Joi.string().min(6),
-      habilitado: Joi.string().required().trim().valid(...Object.values(Enum.Habilitado))
+      habilitado: Joi.string().trim().valid(...Object.values(Enum.Habilitado))
     });
     const { error } = await schema.validate(req.body, { abortEarl: true });
     if (error) throw new error;
