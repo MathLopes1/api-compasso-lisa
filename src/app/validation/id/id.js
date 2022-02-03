@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const Erros = require('../../utils/Error/Erros.js');
 
 module.exports = async (req, res, next) => {
   try {
@@ -7,9 +8,6 @@ module.exports = async (req, res, next) => {
     if (error) throw error;
     return next();
   } catch (error) {
-    return res.status(400).json({
-      'message': 'bad request',
-      'details': [{ 'message': error.message }]
-    });
+    return Erros.badRequest(res, error.message);
   }
 };

@@ -21,7 +21,7 @@ const carSchema = mongoose.Schema({
   acessorios: {
     type: Array,
     required: true,
-    minLength: 3,
+    minLength: 1,
     maxLength: 25      
   },
   quantidadePassageiros: {
