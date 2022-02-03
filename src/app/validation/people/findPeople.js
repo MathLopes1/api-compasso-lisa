@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
       nome: Joi.string().min(3).max(40).trim(),
-      cpf: Joi.string().min(11).max(11).custom((value)=>{
+      cpf: Joi.string().min(11).max(11).trim().custom((value)=>{
         if(!validateCpf(value)){
           return res.status(400).json('Invalid cpf, enter a valid one');
         }else{
@@ -14,8 +14,8 @@ module.exports = async (req, res, next) => {
         }
       }),
       data_nascimento: Joi.date().format('DD/MM/YYYY').less('2004-01-01').max('now'),
-      email: Joi.string().email({ minDomainSegments: 2, tlds: { allow:Enum.email }}),
-      senha: Joi.string().min(6),
+      email: Joi.string().trim().email({ minDomainSegments: 2, tlds: { allow:Enum.email }}),
+      senha: Joi.string().min(6).trim(),
       habilitado: Joi.string().required().trim().valid(...Object.values(Enum.Habilitado))
     });
     const { error } = await schema.validate(req.body, { abortEarl: true });
