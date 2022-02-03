@@ -1,6 +1,7 @@
 const Joi = require('joi').extend(require('@joi/date'));
 const validateCpf = require('../../utils/validation/validateCpf.js');
 const Enum = require('../../utils/Enums.js');
+const Erros = require('../../utils/Error/Erros.js');
 
 module.exports = async (req, res, next) => {
   try {
@@ -23,9 +24,6 @@ module.exports = async (req, res, next) => {
     return next();
   }
   catch (error) {
-    return res.status(400).json({
-      'message': 'bad request',
-      'details': [{ 'message': error.message }]
-    });
+    return Erros.badRequest(res, error.message);
   }
 };
