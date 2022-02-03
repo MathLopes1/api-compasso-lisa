@@ -1,0 +1,432 @@
+openapi: 3.0.1
+info:
+  title: API Compasso Lisa
+  description: Empresa Compasso lisa - Aluguel de carros luxuosos e semi luxuosos.
+  version: 1.0.0
+  contact:
+    name: Matheus Lopes da Silva
+    email: iamatheuslopes@gmail.com
+externalDocs:
+  description: Documentação
+  url: https://github.com/MathLopes1/api-compasso-lisa.git
+servers:
+- url: http://localhost:3000/api/v1
+  description: API COMPASSO LISA
+
+paths:
+  /car:
+    post: 
+      summary: Criar um carro.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor:
+                  type: string
+                ano:
+                  type: string
+                acessorios:
+                  type: string
+                quantidadePassageiros: 
+                          type: number
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  _id:
+                    type: string
+                  moddelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: string
+                  quantidadePassageiros: 
+                    type: number
+        400:
+          description: Error
+          content:
+            application/json: 
+              example: "Não é possivel cadastrar um novo Veiculo"  
+    get:
+      summary: Todos os Carros e um carro específico.
+      parameters:
+      - name: modelo
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cor
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: ano
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: acessorios
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: quantidadePassageiros
+        in: query
+        schema:
+          type: number
+        required: false
+      responses:
+        200:
+          description: sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employee:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        modelo:
+                          type: string
+                        cor:
+                          type: string
+                        ano: 
+                          type: string
+                        acessorios:
+                          type: string
+                        quantidadePassageiros: 
+                          type: number
+        404:
+          description: Veiculo não encontrado
+          content:
+            application/json: 
+              example: "not found"
+  
+  /car/{id}:
+    put:
+      summary: Atualizar um carro.
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: string
+                  quantidadePassageiros: 
+                    type: number
+      responses: 
+        200:
+          description: Atualizado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: string
+                  quantidadePassageiros: 
+                    type: number
+        404:
+          description: Carro não existe
+          content:
+            application/json: 
+              example: "não foi possivel cadastrar"
+        400:
+          description: Body Error
+          content:
+            application/json:
+              example: "Body error"
+    delete:
+      summary: Deletar um carro.
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Excluido com sucesso
+        404:
+          description: Veiculo não encontrado
+          content:
+            application/json: 
+              example: "não foi possivel Deletar o Veiculo"
+        400:
+          description: Body Error
+          content:
+            application/json:
+              example: "Body error"  
+  /people:
+    post:
+      summary: Criar uma Pessoa.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                data_nascimento:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                habilitado:
+                  type: string
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Error
+          content:
+            application/json: 
+              example: "não foi possivel cadastrar a Pessoa"  
+    get:
+      summary: Retorna todas as Pessoas e uma específica.
+      parameters: 
+      - name: _id
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: nome
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: people_id
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cpf
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: data_nascimento
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: email
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: senha
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: habilitado
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Pessoas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        nome:
+                          type: string
+                        cpf: 
+                          type: string
+                        data_nascimento:
+                          type: number
+                        email:
+                          type: string
+                        senha:
+                          type: string
+                        habilitado:
+                          type: string
+        404:
+          description: Pessoa não encontrado
+          content:
+            application/json: 
+              example: "not found"
+  /people/{id}:
+    put:
+      summary: Atualiza uma Pessoa.
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                        nome:
+                          type: string
+                        people_id:
+                          type: string
+                        cpf: 
+                          type: string
+                        data_nascimento:
+                          type: number
+                        email:
+                          type: string
+                        senha:
+                          type: string
+                        habilitado:
+                          type: string
+      responses: 
+        200:
+          description: Atualizado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                        nome:
+                          type: string
+                        people_id:
+                          type: string
+                        cpf: 
+                          type: string
+                        data_nascimento:
+                          type: number
+                        email:
+                          type: string
+                        senha:
+                          type: string
+                        habilitado:
+                          type: string
+        404:
+          description: Pessoa não encontrada
+          content:
+            application/json: 
+              example: "não foi possivel cadastrar o funcionário"
+        400:
+          description: Body Error
+          content:
+            application/json:
+              example: "Body error"
+    delete:
+      summary: Deletar uma Pessoa.
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Excluida com sucesso
+        404:
+          description: Pessoa não encontrada
+          content:
+            application/json: 
+              example: "não foi possivel deletar a Pessoa"
+        400:
+          description: Body Error
+          content:
+            application/json:
+              example: "Body error"
+  /authenticate:
+            post:
+              summary: Autenticar uma Pessoa
+              requestBody:
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                          senha:
+                            type: string
+              responses: 
+                  201:
+                    description: Sucesso
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties: 
+                            _id:
+                              type: string
+                            nome:
+                              type: string
+                            cpf: 
+                              type: string
+                            email:
+                              type: string
+                            habilitado:
+                              type: string
+                            token: 
+                              type: string
+
