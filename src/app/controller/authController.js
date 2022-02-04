@@ -19,7 +19,7 @@ class AuthenticateController {
       
       const token = Token({id: user.id});
       
-      res.send({user, token});        
+      res.status(200).send({user, token});        
     } catch (error) {{
       return Erros.badRequest(res, error.message);
     }
