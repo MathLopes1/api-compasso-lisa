@@ -1,4 +1,5 @@
 const peopleRepository = require('../repository/peopleRepository.js');
+const formatCPF = require('../utils/FormatCpf/formatCpf.js');
 
 class PeopleService {
   async create(payload){
@@ -7,7 +8,7 @@ class PeopleService {
       throw new Error('CPF already exists');
     }
     const data = await peopleRepository.create(payload);
-    const people = this.formatCPF(data);
+    const people = formatCPF(data);
     return people;
   }
   async find(payload) {
@@ -24,11 +25,6 @@ class PeopleService {
   async update(id, payload) {
     const data = await peopleRepository.update(id, payload);
     return data;
-  }
-  formatCPF(payload) {
-    const cpf = payload.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    const people = Object.assign(payload, { cpf: cpf });
-    return people;
   }
 }
 
