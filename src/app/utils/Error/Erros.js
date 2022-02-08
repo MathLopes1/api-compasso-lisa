@@ -1,20 +1,26 @@
 class Erros {
   notFound(res, menssage) {
     return res.status(404).json({
-      'message': 'Not Found',
-      'details': menssage
+      'description': 'Not Found',
+      'name': menssage
     });
   }
   badRequest(res, menssage) {
     return res.status(400).json({
-      'message': 'Bad Request',
-      'details': menssage
+      'description': 'Bad Request',
+      'name': menssage
     });
   }
   invalidPassword(res, menssage) {
     return res.status(400).json({
-      'message': 'Invalid password',
-      'details': menssage
+      'description': 'Invalid password',
+      'name': menssage
+    });
+  } 
+  invalidCpf(res, menssage) {
+    return res.status(400).json({
+      'description': 'Conflict',
+      'name': menssage
     });
   }  
 

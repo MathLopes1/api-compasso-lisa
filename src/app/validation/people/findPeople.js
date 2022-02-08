@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
       nome: Joi.string().min(3).max(40).trim(),
       cpf: Joi.string().min(11).max(11).trim().custom((value)=>{
         if(!validateCpf(value)){
-          return res.status(400).json('Invalid cpf, enter a valid one');
+          return Erros.badRequest(res, 'Invalid CPF');
         }else{
           return true;
         }
