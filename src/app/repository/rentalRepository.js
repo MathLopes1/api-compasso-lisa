@@ -30,6 +30,10 @@ class RentalRepository {
   async delete(id) {
     return rentalSchema.deleteOne({ _id: id });
   }
+  async update(id, payload) {
+    await rentalSchema.updateOne({ _id: id }, payload);
+    return rentalSchema.findOne({ _id: id });
+  }
 }
 
 module.exports = new RentalRepository;

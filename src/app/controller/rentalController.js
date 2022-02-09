@@ -48,6 +48,22 @@ class RentalController {
     catch (error) {
       return Erros.badRequest(res, error.message);
     }
+  }
+  async update(req, res) {
+
+    const id = req.params.id;
+    const data = req.body;
+    try {
+      const rental = await rentalService.findId(id);
+      if (!rental) {
+        return Erros.badRequest(res, 'rental company id not found');
+      }
+      const updatedRental = await rentalService.update(id, data);
+      res.status(200).json(updatedRental);
+    }
+    catch (error) {
+      return Erros.badRequest(res, error.message);
+    }
   }   
 }
 

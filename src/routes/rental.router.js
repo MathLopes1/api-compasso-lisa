@@ -5,5 +5,6 @@ module.exports = (server, routes, prefix = '/api/v1/rental') =>{
   routes.get('/', rentalController.find);
   routes.get('/:id', rentalController.findId); 
   routes.delete('/:id', rentalController.delete); 
+  routes.put('/:id', rentalController.update);
   server.use(prefix, routes);
 };
