@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require('dotenv/config');
 
 class Database {
   constructor() {
@@ -7,8 +6,7 @@ class Database {
   }
 
   connect() {
-    const db = process.env.DATABASE || 'mongodb://127.0.0.1:27017/apilisa';
-    return mongoose.connect(db)
+    return mongoose.connect('mongodb://127.0.0.1:27017/tests')
       .catch((error) => console.log(error));
   }
 }
