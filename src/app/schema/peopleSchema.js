@@ -47,8 +47,8 @@ peopleSchema.pre('save', async function (next) {
   next();
 });
 
-peopleSchema.method('toJSON', function () {
-  /* eslint-disable no-unused-vars */
+peopleSchema.method('toJSON', function () { 
+  // eslint-disable-next-line no-unused-vars
   const { __v, ...people } = this.toObject();
   return people;
 }); 

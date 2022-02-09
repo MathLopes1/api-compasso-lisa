@@ -19,7 +19,6 @@ const carSchema = mongoose.Schema({
     required: true,
   },
   acessorios: {
-    _id: true,
     type: Array,
     required: true,
     minLength: 1,
