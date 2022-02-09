@@ -14,6 +14,7 @@ const peopleSchema = mongoose.Schema({
   cpf: {
     type: String,
     requerid: true,
+    unique: true,
     minLength:11,
     maxLength: 11   
   },

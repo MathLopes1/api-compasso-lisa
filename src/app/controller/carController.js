@@ -51,6 +51,14 @@ class CarController {
       return Erros.badRequest(res, error.message);
     }
   }
+  // async updateAccessories(req, res) {
+  //  const idAccessories = req.params.id_accessories;
+  //  const idCar = req.params.id;
+  //   try {     
+  //   } catch (error) {     
+  //    }
+  // }
+  
   async findId (req, res) {
     const { id } = req.params;
     try {
