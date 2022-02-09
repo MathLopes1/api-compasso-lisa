@@ -10,6 +10,15 @@ class RentalController {
       return Erros.badRequest(res, error.message); 
     }
   }
+  async find(req, res) {
+    try {
+      const data = await rentalService.find(req.query);
+      return res.status(200).json(data);
+    } 
+    catch (error) {
+      return Erros.badRequest(res, error.message);
+    }
+  }
 }
 
 module.exports = new RentalController;
