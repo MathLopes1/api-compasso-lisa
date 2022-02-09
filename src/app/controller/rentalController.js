@@ -32,7 +32,23 @@ class RentalController {
     } catch (error) {
       return Erros.badRequest(res, error.message);
     }
-  }    
+  }
+  async delete(req, res) {
+    try {
+      const id = req.params.id;
+      const rental = await rentalService.findId({ _id: id });
+
+      if (!rental) {
+        return Erros.notFound(res, 'rental company id not found');
+      }
+
+      await rentalService.delete({ _id: id });
+      return res.status(204).json();
+    } 
+    catch (error) {
+      return Erros.badRequest(res, error.message);
+    }
+  }   
 }
 
 module.exports = new RentalController;

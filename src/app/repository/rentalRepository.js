@@ -27,6 +27,9 @@ class RentalRepository {
   async findId(id) {
     return rentalSchema.findOne({ _id: id });
   }
+  async delete(id) {
+    return rentalSchema.deleteOne({ _id: id });
+  }
 }
 
 module.exports = new RentalRepository;

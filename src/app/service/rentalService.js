@@ -12,6 +12,10 @@ class RentalService {
   async findId(id) {
     return rentalRepository.findId(id);
   } 
+  async delete(id) {
+    const rental = await rentalRepository.delete(id);
+    return rental;
+  } 
 }
 
 module.exports = new RentalService;
