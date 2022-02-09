@@ -1,0 +1,10 @@
+const rentalRepository = require('../repository/rentalRepository.js');
+
+class RentalService {
+  async create(payload){
+    const data = await rentalRepository.create(payload);
+    return data;
+  }
+}
+
+module.exports = new RentalService;
