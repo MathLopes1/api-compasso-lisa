@@ -19,6 +19,12 @@ const rentalSchema = mongoose.Schema({
       type:String,
       required:true
     },
+    logradouro: {
+      type: String
+    },
+    complemento: {
+      type: String
+    },
     number: {
       type:Number,
       required:true,
@@ -28,21 +34,14 @@ const rentalSchema = mongoose.Schema({
       required:true,
       default:false
     },
-    logadouro: {
-      type: String,
-      required:true
-    },
     bairro: { 
-      type: String,
-      required:true 
+      type: String
     },
     localidade: {
-      type: String,
-      required:true 
+      type: String
     }, 
     uf: {
-      type: String,
-      required:true 
+      type: String
     },
     _id: false
   }],
