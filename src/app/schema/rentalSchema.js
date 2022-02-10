@@ -27,7 +27,24 @@ const rentalSchema = mongoose.Schema({
       type:Boolean,
       required:true,
       default:false
-    }
+    },
+    logadouro: {
+      type: String,
+      required:true
+    },
+    bairro: { 
+      type: String,
+      required:true 
+    },
+    localidade: {
+      type: String,
+      required:true 
+    }, 
+    uf: {
+      type: String,
+      required:true 
+    },
+    _id: false
   }],
 });
 rentalSchema.method('toJSON', function () {
