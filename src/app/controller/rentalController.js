@@ -1,23 +1,12 @@
 const rentalService = require('../service/rentalService.js');
 const Erros = require('../utils/Error/Erros.js');
-const axios = require('axios');
 
 class RentalController {
   async create(req, res){
     const payload = req.body;
     try {
-      const adress = payload.endereco.find(element =>
-        element !== undefined
-      );
-      const { cep } = adress;
-
-      const { data } = await axios.get(`https://viacep.com.br/ws/${cep}/json`);
-      const { logradouro, bairro, localidade, uf } = data;
-
-      Object.assign(adress, { logradouro: logradouro, bairro: bairro, localidade: localidade, uf: uf });
-      const createRen = await rentalService.create(payload);
-
-      return res.status(200).json(createRen);
+      const data = await rentalService.create(payload);
+      return res.status(201).json(data);
     } catch (error) {
       return Erros.badRequest(res, error.message); 
     }
