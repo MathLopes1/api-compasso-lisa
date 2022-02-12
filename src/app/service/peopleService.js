@@ -1,5 +1,5 @@
 const peopleRepository = require('../repository/peopleRepository.js');
-const formatCPF = require('../utils/FormatCpf/formatCpf.js');
+const formatCPF = require('../utils/functions/FormatCpf/formatCpf.js');
 
 class PeopleService {
   async create(payload){
