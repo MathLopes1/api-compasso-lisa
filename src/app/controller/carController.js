@@ -51,6 +51,17 @@ class CarController {
       return Erros.badRequest(res, error.message);
     }
   }
+  async updateAccessories(req, res) {
+    const id = req.params.id;
+    const idAccessories = req.params.id_accessories;
+    const payload = req.body;
+    try {     
+      const updatedAccessorie = await carService.updateAccessorie(id, idAccessories, payload);
+      return res.status(200).json(updatedAccessorie);
+    } catch (error) {    
+      return Erros.badRequest(res, error.message);
+    }
+  }
   async findId (req, res) {
     const { id } = req.params;
     try {

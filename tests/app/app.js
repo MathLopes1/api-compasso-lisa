@@ -1,7 +1,6 @@
 const express = require('express');
-const cors = require('cors');
-const router = require('./routes/index.js');
-require('./infra/database/mongo/index.js');
+const router = require('../../src/routes/index.js');
+require('./infra/database/mongo-test/index.js');
 
 class App {
   constructor() {
@@ -11,7 +10,6 @@ class App {
   }
 
   middleware() {
-    this.server.use(cors());
     this.server.use(express.json());
   }
 

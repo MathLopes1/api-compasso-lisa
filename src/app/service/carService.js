@@ -20,6 +20,10 @@ class CarService {
     const data = await carRepository.update(id, payload);
     return data;
   }
+  async updateAccessorie (id, idAccessories, payload) {
+    const data = await carRepository.updateAccessorie(id, idAccessories, payload);
+    return data;
+  }
 }
 
 module.exports = new CarService; 

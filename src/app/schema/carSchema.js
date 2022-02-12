@@ -18,12 +18,14 @@ const carSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  acessorios: {
-    type: Array,
-    required: true,
-    minLength: 1,
-    maxLength: 25      
-  },
+  acessorios: [{
+    descricao: {
+      type: String,
+      required: true,
+      minLength: 1,
+      maxLength: 25 
+    }     
+  }],
   quantidadePassageiros: {
     type: Number,
     required: true,

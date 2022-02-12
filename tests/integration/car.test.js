@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 const mongoose = require('mongoose');
 const supertest = require('supertest');
-const App = require('../src/app.js');
-const carService = require('../src/app/service/carService.js');
+const App = require('../app/app.js');
+const carService = require('../../src/app/service/carService.js');
 
 const car = {};
 
