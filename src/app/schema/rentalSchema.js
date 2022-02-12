@@ -4,15 +4,21 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const rentalSchema = mongoose.Schema({
   nome: {
     type:String,
-    required:true
+    required:true,
+    minLength: 3,
+    maxLength: 20
   },
   cnpj: {
     type:String,
-    required:true
+    required:true,
+    minLength: 14,
+    maxLength: 14
   },
   atividades: {
     type:String,
-    required:true
+    required:true,
+    minLength: 5,
+    maxLength: 40
   },
   endereco: [{
     cep: {
@@ -28,6 +34,7 @@ const rentalSchema = mongoose.Schema({
     number: {
       type:Number,
       required:true,
+      minLength: 1
     },
     isFilial: {
       type:Boolean,

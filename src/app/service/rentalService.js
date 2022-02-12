@@ -1,5 +1,5 @@
 const rentalRepository = require('../repository/rentalRepository.js');
-const findCep = require('../utils/FindCep/findCep.js');
+const findCep = require('../utils/functions/FindCep/findCep.js');
 
 class RentalService {
   async create(payload, data){
