@@ -425,7 +425,7 @@
         }
       }
     },
-    "/car/{id}/acessorios/{acessorioId}": {
+    "/car/{id}/acessorios/{id_accessories}": {
       "parameters": [
         {
           "name": "id",
@@ -436,7 +436,7 @@
           "required": true
         },
         {
-          "name": "acessorioId",
+          "name": "id_accessories",
           "in": "path",
           "schema": {
             "type": "string"
@@ -548,7 +548,7 @@
                   },
                   "senha": {
                     "type": "string",
-                    "example": 44506
+                    "example": 445060
                   },
                   "habilitado": {
                     "type": "string",
@@ -863,7 +863,7 @@
                   },
                   "senha": {
                     "type": "string",
-                    "example": 44506
+                    "example": 445060
                   }
                 }
               }
