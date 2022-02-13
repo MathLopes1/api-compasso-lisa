@@ -1,4 +1,4 @@
-const authController = require('../app/controller/authController.js');
+const authController = require('../../app/controller/authController.js');
 
 module.exports = (server, routes, prefix = '/api/v1/authenticate') => {
   routes.post('/',authController.authenticate);
