@@ -11,7 +11,8 @@ module.exports = server => {
     peopleRouter(server, new Router());
     authRouter(server, new Router());
     rentalRouter(server, new Router());
-    swaggerRouter(server, new Router());
+    server.
+      use(swaggerRouter);
     next();
   });
 };

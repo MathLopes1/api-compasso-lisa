@@ -1,8 +1,7 @@
-/*const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../../lisa-documentation.json');
+const router = require('express').Router();
+const swaggerUi = require('swagger-ui-express');
+const LisaDocs = require('../../lisa-documentation.json');
 
-module.exports = (server, routes, prefix = '/api/v1/') =>{
-  routes.get('api-docs', swaggerUi.setup(swaggerDocument));
-  routes.use('api-docs', swaggerUi.serve);
-  server.use(prefix, routes);
-};*/
+router.use('/api/v1/api-docs', swaggerUi.serve).get('/api/v1/api-docs', swaggerUi.setup(LisaDocs));
+
+module.exports = router;
