@@ -8,6 +8,8 @@ module.exports = (req, res, next) => {
     req.client = decode;
     return next();
   } catch (error) {
-    return res.status(401).send({ description: 'Unauthorized', message: 'Invalid login token' });
+    return res.status(401).send({ 
+      description: 'Unauthorized', 
+      message: 'Invalid login token'});
   }
 };
