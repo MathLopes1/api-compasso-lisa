@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
       acessorios: Joi.string().min(1).max(25).trim(),
       quantidadePassageiros: Joi.number().min(1).max(5)
     });
-    const { error } = await validation.validate(req.query, { abortEarl: true });
+    const { error } = await validation.validate(req.query, { abortEarly: true });
     if (error) throw error;
     return next();
   } catch (error) {

@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
       senha: Joi.string().min(6).trim(),
       habilitado: Joi.string().trim().valid(...Object.values(Enum.Habilitado))
     });
-    const { error } = await schema.validate(req.body, { abortEarl: true });
+    const { error } = await schema.validate(req.body, { abortEarly: true });
     if (error) throw error;
     return next();
   }

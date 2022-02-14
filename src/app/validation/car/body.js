@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
       acessorios: Joi.array().min(1).max(25).items(Joi.object({descricao: Joi.string().trim().required()})).required().unique('descricao'),
       quantidadePassageiros: Joi.number().integer().min(1).max(5).required()
     });
-    const { error } = await validation.validate(req.body, { abortEarl: true });
+    const { error } = await validation.validate(req.body, { abortEarly: true });
     if (error) throw error;
     return next();
   } catch (error) {
