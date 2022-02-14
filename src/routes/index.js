@@ -12,7 +12,7 @@ module.exports = server => {
     authRouter(server, new Router());
     rentalRouter(server, new Router());
     server.
-      use(swaggerRouter);
+      use(swaggerRouter, new Router());
     next();
   });
 };
