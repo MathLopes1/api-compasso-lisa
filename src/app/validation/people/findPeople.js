@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
       habilitado: Joi.string().trim().valid(...Object.values(Enum.Habilitado))
     });
     const { error } = await schema.validate(req.body, { abortEarl: true });
-    if (error) throw new error;
+    if (error) throw error;
     return next();
   }
   catch (error) {
