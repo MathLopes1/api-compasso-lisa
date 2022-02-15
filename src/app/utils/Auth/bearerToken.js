@@ -1,13 +1,18 @@
 const jwt = require('jsonwebtoken');
-const auth = require('../../config/auth.json');
+const authI = require('../../config/auth.json');
 
 module.exports = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1];
-    const decode = jwt.verify(token, auth.secret);
-    req.client = decode;
+    const auth = req.headers.authorization;
+    const token = auth.split(' ')[1];
+    if(!token) 
+      return res.status(401).send('Unauthorized access');
+    const compare = jwt.verify(token, authI.secret);
+    req.client = compare;
     return next();
   } catch (error) {
-    return res.status(401).send({ description: 'Unauthorized', message: 'Invalid login token' });
+    return res.status(401).send({ 
+      description: 'Unauthorized', 
+      message: 'Invalid login token'});
   }
 };
