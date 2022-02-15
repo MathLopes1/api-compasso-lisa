@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
             isFilial: Joi.boolean().required()
           }))
     });
-    const { error } = await schema.validate(req.body, { abortEarl: true });
+    const { error } = await schema.validate(req.body, { abortEarly: true });
     if (error) throw error;
     return next();
   } catch (error) {
