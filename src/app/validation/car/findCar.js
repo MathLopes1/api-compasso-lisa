@@ -14,8 +14,8 @@ module.exports = async (req, res, next) => {
     return next();
   } catch (error) {
     return res.status(400).json({
-      'description': error.details[0].path[0],
-      'name':error.message
+      description: error.details[0].path[0],
+      name: error.message
     });
   }
 };

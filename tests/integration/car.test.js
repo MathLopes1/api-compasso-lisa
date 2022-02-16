@@ -7,7 +7,6 @@ const car = {};
 
 describe('TEST - FEATURES THE CAR', () => {
   beforeAll(async () => {
-
     car.c1 = await carService.create({
       modelo: 'GM S10 2.8',
       cor: 'branco',
@@ -30,21 +29,19 @@ describe('TEST - FEATURES THE CAR', () => {
     await mongoose.connection.close();
   });
 
-  it('GET - CARS', async ()=> {
-    const res = await supertest(App)
-      .get('/api/v1/car');
+  it('GET - CARS', async () => {
+    const res = await supertest(App).get('/api/v1/car');
 
     expect(res.statusCode).toBe(200);
   });
 
-  it('GET ID - CARS', async ()=> {
-    const res = await supertest(App)
-      .get(`/api/v1/car/${car.c1._id}`);
+  it('GET ID - CARS', async () => {
+    const res = await supertest(App).get(`/api/v1/car/${car.c1._id}`);
 
     expect(res.statusCode).toBe(200);
   });
 
-  it('POST - CARS', async ()=> {
+  it('POST - CARS', async () => {
     const res = await supertest(App)
       .post('/api/v1/car')
       .send({
@@ -67,17 +64,14 @@ describe('TEST - FEATURES THE CAR', () => {
     expect(res.statusCode).toBe(201);
   });
 
-  it('PUT - CARS', async ()=>{
+  it('PUT - CARS', async () => {
     const res = await supertest(App)
       .put(`/api/v1/car/${car.c1._id}`)
       .send({
         modelo: 'Fusquinha',
         cor: 'marrom',
         ano: '1976',
-        acessorios: [
-          { descricao: 'Duas portas' },
-          { descricao: 'Fé' }
-        ],
+        acessorios: [{ descricao: 'Duas portas' }, { descricao: 'Fé' }],
         quantidadePassageiros: 5
       });
     expect(res.statusCode).toBe(200);
@@ -85,8 +79,7 @@ describe('TEST - FEATURES THE CAR', () => {
   });
 
   it('DELETE - CARS', async () => {
-    const res = await supertest(App)
-      .delete(`/api/v1/car/${car.c1._id}`);
+    const res = await supertest(App).delete(`/api/v1/car/${car.c1._id}`);
 
     expect(res.statusCode).toBe(204);
   });
