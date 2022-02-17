@@ -5,13 +5,6 @@ class Erros {
       name: menssage
     });
   }
-
-  invalidCpf(res, menssage) {
-    return res.status(400).json({
-      description: 'Conflict',
-      name: menssage
-    });
-  }
 }
 
 module.exports = new Erros();
