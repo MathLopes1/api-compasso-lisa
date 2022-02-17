@@ -1,6 +1,5 @@
 const Joi = require('joi');
 const validateCnpj = require('../../utils/validation/validateCnpj.js');
-const Erros = require('../../utils/Error/Erros.js');
 
 module.exports = async (req, res, next) => {
   try {
@@ -10,9 +9,9 @@ module.exports = async (req, res, next) => {
         .trim()
         .min(14)
         .max(14)
-        .custom((value) => {
+        .custom((value, helper) => {
           if (!validateCnpj(value)) {
-            return Erros.badRequest(res, 'Invalid CNPJ');
+            return helper.message(`cnpj '${value}' is invalid, enter one valid!`);
           }
           return true;
         }),

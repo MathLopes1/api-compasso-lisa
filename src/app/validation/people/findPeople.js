@@ -1,7 +1,6 @@
 const Joi = require('joi').extend(require('@joi/date'));
 const validateCpf = require('../../utils/validation/validateCpf.js');
 const Enum = require('../../utils/Enums.js');
-const Erros = require('../../utils/Error/Erros.js');
 
 module.exports = async (req, res, next) => {
   try {
@@ -11,9 +10,9 @@ module.exports = async (req, res, next) => {
         .min(11)
         .max(11)
         .trim()
-        .custom((value) => {
+        .custom((value, helper) => {
           if (!validateCpf(value)) {
-            return Erros.badRequest(res, 'Invalid CPF');
+            return helper.message(`cpf '${value}' is invalid, enter one valid!`);
           }
           return true;
         }),
