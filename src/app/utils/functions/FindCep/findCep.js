@@ -6,4 +6,4 @@ class CEP {
     return result.data;
   }
 }
-module.exports = new CEP;
+module.exports = new CEP();

@@ -4,6 +4,7 @@ class PeopleRepository {
   async create(payload) {
     return peopleSchema.create(payload);
   }
+
   async find(payload) {
     const myCustomLabels = {
       totalDocs: 'total',
@@ -22,18 +23,21 @@ class PeopleRepository {
       limit: 100,
       customLabels: myCustomLabels
     };
-    return peopleSchema.paginate(payload,options,{});
+    return peopleSchema.paginate(payload, options, {});
   }
+
   async findId(id) {
     return peopleSchema.findOne({ _id: id });
   }
+
   async delete(id) {
     return peopleSchema.deleteOne({ _id: id });
   }
+
   async update(id, payload) {
     await peopleSchema.updateOne({ _id: id }, payload);
     return peopleSchema.findOne({ _id: id });
   }
 }
 
-module.exports = new PeopleRepository;
+module.exports = new PeopleRepository();

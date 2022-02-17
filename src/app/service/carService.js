@@ -5,25 +5,30 @@ class CarService {
     const data = await carRepository.create(payload);
     return data;
   }
+
   async find(payload) {
     const data = await carRepository.find(payload);
     return data;
   }
+
   async findId(id) {
     return carRepository.findId(id);
   }
+
   async delete(id) {
     const car = await carRepository.delete(id);
     return car;
   }
+
   async update(id, payload) {
     const data = await carRepository.update(id, payload);
     return data;
   }
-  async updateAccessorie (id, idAccessories, payload) {
+
+  async updateAccessorie(id, idAccessories, payload) {
     const data = await carRepository.updateAccessorie(id, idAccessories, payload);
     return data;
   }
 }
 
-module.exports = new CarService; 
+module.exports = new CarService();
