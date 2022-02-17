@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 const rentalRepository = require('../repository/rentalRepository.js');
 const findCep = require('../utils/functions/FindCep/findCep.js');
 
@@ -16,7 +15,7 @@ class RentalService {
       adress.bairro = bairro;
       adress.localidade = localidade;
       adress.uf = uf;
-      i++;
+      i += 1;
     } while (i < payload.endereco.length);
     const result = await rentalRepository.create(payload, data);
     return result;

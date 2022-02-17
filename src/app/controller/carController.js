@@ -1,5 +1,4 @@
 const carService = require('../service/carService.js');
-const Erros = require('../utils/Error/Erros.js');
 
 class CarController {
   async create(req, res) {
@@ -7,7 +6,10 @@ class CarController {
       const data = await carService.create(req.body);
       return res.status(201).json(data);
     } catch (error) {
-      return Erros.badRequest(res, error.message);
+      return res.status(error.statusCode).json({
+        description: error.description,
+        name: error.message
+      });
     }
   }
 
@@ -16,22 +18,23 @@ class CarController {
       const data = await carService.find(req.query);
       return res.status(200).json(data);
     } catch (error) {
-      return Erros.badRequest(res, error.message);
+      return res.status(error.statusCode).json({
+        description: error.description,
+        name: error.message
+      });
     }
   }
 
   async delete(req, res) {
     try {
       const { id } = req.params;
-      const car = await carService.findId({ _id: id });
-
-      if (!car) {
-        return Erros.notFound(res, 'Car not found');
-      }
       await carService.delete({ _id: id });
       return res.status(204).json();
     } catch (error) {
-      return Erros.badRequest(res, error.message);
+      return res.status(error.statusCode).json({
+        description: error.description,
+        name: error.message
+      });
     }
   }
 
@@ -39,14 +42,13 @@ class CarController {
     const { id } = req.params;
     const data = req.body;
     try {
-      const car = await carService.findId(id);
-      if (!car) {
-        return Erros.notFound(res, 'Car not Found');
-      }
       const updatedCar = await carService.update(id, data);
       res.status(200).json(updatedCar);
     } catch (error) {
-      return Erros.badRequest(res, error.message);
+      return res.status(error.statusCode).json({
+        description: error.description,
+        name: error.message
+      });
     }
   }
 
@@ -58,7 +60,10 @@ class CarController {
       const updatedAccessorie = await carService.updateAccessorie(id, idAccessories, payload);
       return res.status(200).json(updatedAccessorie);
     } catch (error) {
-      return Erros.badRequest(res, error.message);
+      return res.status(error.statusCode).json({
+        description: error.description,
+        name: error.message
+      });
     }
   }
 
@@ -66,16 +71,14 @@ class CarController {
     const { id } = req.params;
     try {
       const car = await carService.findId(id);
-      if (!car) {
-        if (!car) {
-          return Erros.notFound(res, 'Car not Found');
-        }
-      }
       return res.status(200).json({
         veiculos: car
       });
     } catch (error) {
-      return Erros.badRequest(res, error.message);
+      return res.status(error.statusCode).json({
+        description: error.description,
+        name: error.message
+      });
     }
   }
 }
