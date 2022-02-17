@@ -27,16 +27,15 @@ class RentalRepository {
   }
 
   async findId(id) {
-    return rentalSchema.findOne({ _id: id });
+    return rentalSchema.findById(id);
   }
 
   async delete(id) {
-    return rentalSchema.deleteOne({ _id: id });
+    return rentalSchema.findByIdAndDelete(id);
   }
 
   async update(id, payload) {
-    await rentalSchema.updateOne({ _id: id }, payload);
-    return rentalSchema.findOne({ _id: id });
+    return rentalSchema.findByIdAndUpdate(id, payload, { new: true });
   }
 }
 

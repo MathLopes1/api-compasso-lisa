@@ -22,21 +22,21 @@ class CarService {
   }
 
   async findId(id) {
-    const data = await carRepository.findId(id);
-    if (data == null) throw new NotFound(id);
-    return data;
+    const car = await carRepository.findId(id);
+    if (car == null) throw new NotFound(id);
+    return car;
   }
 
   async delete(id) {
-    const data = await carRepository.delete(id);
-    if (data == null) throw new NotFound(id);
-    return data;
+    const car = await carRepository.delete(id);
+    if (car == null) throw new NotFound(id);
+    return car;
   }
 
   async update(id, payload) {
-    const data = await carRepository.update(id, payload);
-    if (data == null) throw new NotFound(id);
-    return data;
+    const car = await carRepository.update(id, payload);
+    if (car == null) throw new NotFound(id);
+    return car;
   }
 
   async updateAccessorie(id, idAccessories, payload) {

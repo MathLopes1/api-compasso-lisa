@@ -27,21 +27,21 @@ class PeopleService {
   }
 
   async findId(id) {
-    const data = await peopleRepository.findId(id);
-    if (data == null) throw new NotFound(id);
-    return data;
+    const people = await peopleRepository.findId(id);
+    if (people == null) throw new NotFound(id);
+    return people;
   }
 
   async delete(id) {
-    const data = await peopleRepository.delete(id);
-    if (data == null) throw new NotFound(id);
-    return data;
+    const people = await peopleRepository.delete(id);
+    if (people == null) throw new NotFound(id);
+    return people;
   }
 
   async update(id, payload) {
-    const result = await peopleRepository.update(id, payload);
-    if (result == null) throw new NotFound(id);
-    return result;
+    const people = await peopleRepository.update(id, payload);
+    if (people == null) throw new NotFound(id);
+    return people;
   }
 }
 
