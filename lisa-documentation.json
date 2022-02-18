@@ -15,13 +15,13 @@
   },
   "servers": [
     {
-      "url": "https://compasso-lisa.herokuapp.com/api/v1",
+      "url": "https:/math-compass-lisa.herokuapp.com/api/v1",
       "description": "Heroku server"
     },
     {
       "url": "http://localhost:3000/api/v1",
       "description": "API COMPASSO LISA"
-   }
+    }
   ],
   "tags": [
     {
@@ -923,7 +923,7 @@
                   },
                   "cnpj": {
                     "type": "string",
-                    "example": 7654824000124
+                    "example": 85323117000169
                   },
                   "atividades": {
                     "type": "string",
@@ -1223,7 +1223,7 @@
                   },
                   "cnpj": {
                     "type": "string",
-                    "example": 7654824000124
+                    "example": 96732427000153
                   },
                   "atividades": {
                     "type": "string",
