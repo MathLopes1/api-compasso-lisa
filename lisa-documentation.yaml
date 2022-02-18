@@ -10,7 +10,7 @@ externalDocs:
   description: Documentação
   url: https://github.com/MathLopes1/api-compasso-lisa.git
 servers:
-- url: https://compasso-lisa.herokuapp.com/api/v1
+- url: https://math-compass-lisa.herokuapp.com/api/v1
   description: Heroku server
 - url: http://localhost:3000/api/v1
   description: API COMPASSO LISA
