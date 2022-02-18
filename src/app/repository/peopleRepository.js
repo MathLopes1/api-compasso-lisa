@@ -27,16 +27,15 @@ class PeopleRepository {
   }
 
   async findId(id) {
-    return peopleSchema.findOne({ _id: id });
+    return peopleSchema.findById(id);
   }
 
   async delete(id) {
-    return peopleSchema.deleteOne({ _id: id });
+    return peopleSchema.findByIdAndDelete(id);
   }
 
   async update(id, payload) {
-    await peopleSchema.updateOne({ _id: id }, payload);
-    return peopleSchema.findOne({ _id: id });
+    return peopleSchema.findByIdAndUpdate(id, payload, { new: true });
   }
 }
 

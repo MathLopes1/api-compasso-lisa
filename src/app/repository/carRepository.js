@@ -27,16 +27,15 @@ class CarRepository {
   }
 
   async findId(id) {
-    return carSchema.findOne({ _id: id });
+    return carSchema.findById({ _id: id });
   }
 
   async delete(id) {
-    return carSchema.deleteOne({ _id: id });
+    return carSchema.findByIdAndDelete(id);
   }
 
   async update(id, payload) {
-    await carSchema.updateOne({ _id: id }, payload);
-    return carSchema.findOne({ _id: id });
+    return carSchema.findByIdAndUpdate(id, payload, { new: true });
   }
 
   async updateAccessorie(id, acessorioId, payload) {
