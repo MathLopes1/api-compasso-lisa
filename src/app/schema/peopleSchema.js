@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
-const Enum = require('../utils/Enums.js');
-
 const bcrypt = require('bcryptjs');
+const Enum = require('../utils/Enums.js');
 
 const peopleSchema = mongoose.Schema({
   nome: {
@@ -14,8 +13,9 @@ const peopleSchema = mongoose.Schema({
   cpf: {
     type: String,
     requerid: true,
-    minLength:11,
-    maxLength: 11   
+    unique: true,
+    minLength: 11,
+    maxLength: 11
   },
   data_nascimento: {
     type: String,
@@ -33,7 +33,7 @@ const peopleSchema = mongoose.Schema({
     minLength: 6
   },
   habilitado: {
-    type: String, 
+    type: String,
     enum: Enum.Habilitado,
     requerid: true
   }
@@ -47,10 +47,10 @@ peopleSchema.pre('save', async function (next) {
 });
 
 peopleSchema.method('toJSON', function () {
-  /* eslint-disable no-unused-vars */
+  // eslint-disable-next-line no-unused-vars
   const { __v, ...people } = this.toObject();
   return people;
-}); 
+});
 
 peopleSchema.plugin(mongoosePaginate);
 const People = mongoose.model('People', peopleSchema);

@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const router = require('./routes/index');
+const router = require('./routes/index.js');
 require('./infra/database/mongo/index.js');
+const erroModify = require('./app/middlewares/erroModify.js');
 
 class App {
   constructor() {
     this.server = express();
     this.middleware();
     this.routes();
+    this.erroModify();
   }
 
   middleware() {
@@ -18,6 +20,10 @@ class App {
   routes() {
     router(this.server);
   }
-}
-module.exports = new App().server;
 
+  erroModify() {
+    this.server.use(erroModify);
+  }
+}
+
+module.exports = new App().server;

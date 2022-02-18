@@ -1,4 +1,4 @@
-![Inserir um título (2)](https://user-images.githubusercontent.com/70352508/151679574-e878d468-74d7-4b01-b709-422860c62972.png)
+![Green and Peach Geometric Blocks Business Envelope](https://user-images.githubusercontent.com/70352508/153690023-65a67394-e323-4c05-b225-cfe5eeb6b896.gif)
 
 
 ## Descrição do Projeto
@@ -38,7 +38,7 @@ $ npm run dev
 $ npm run start
 
 # Execute os testes de features da aplicação 
-$ npm test
+$ npm run test
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
 ```
@@ -48,14 +48,22 @@ $ npm test
 - [x] Criar um endpoint para listar carros.
 - [x] Criar um endpoint para atualizar um carro.
 - [x] Criar um endpoint para deletar um carro.
+- [x] Criar um endpoint para atualizar um acessorio.
 - [x] Criar um endpoint para cadastrar uma pessoa.
 - [x] Criar um endpoint para listar pessoas.
 - [x] Criar um endpoint para atualizar uma pessoa.
 - [x] Criar um endpoint para deletar uma pessoa.
+- [x] Criar um endpoint para cadastrar uma locadora.
+- [x] Criar um endpoint para listar locadoras.
+- [x] Criar um endpoint para atualizar uma locadora.
+- [x] Criar um endpoint para deletar uma locadora.
 - [x] Validações
 - [x] Rota de autenticação de usúario. 
  
  # 🚗 Rotas de Carros
+
+### OBS
+Para utilizar as rotas de carro, você terá que fazer o login através do token gerado na rota de autenticação.
 
 POST(Cadastrar carros) - `http://localhost:3000/api/v1/car`
 
@@ -127,6 +135,12 @@ PUT(Atualizar um carro) - `http://localhost:3000/api/v1/car/{id}`
    "quantidadePassageiros": 5
 }
 ```
+PATCH(Atualizar um acessorio) - `http://localhost:3000/api/v1/car/{id}/acessorios/{id_accessories}`
+
+```bash
+{ "descricao": "Ar-condicionado" }
+
+```
 DELETE(Deletar um carro) - `http://localhost:3000/api/v1/car/{id}`
 
 # 😄 Rotas de Pessoas
@@ -166,8 +180,6 @@ GET(Listar por query) - `http://localhost:3000/api/v1/people/?cor=branco`
  PUT(Atualizar Pessoas) - `http://localhost:3000/api/v1/people/{id}`
 
  ```bash
-   É Possível a buscar por Id e query params.
-
 { 
  "Pessoas" :{
                "nome": "joaozinho ciclano",
@@ -179,7 +191,89 @@ GET(Listar por query) - `http://localhost:3000/api/v1/people/?cor=branco`
              }
 }
 ```
-DELETE(Deletar um carro) - `http://localhost:3000/api/v1/car/{id}`
+DELETE(Deletar uma Pessoa) - `http://localhost:3000/api/v1/people/{id}`
+
+# 💵 Rotas de Locadora
+
+POST(Cadastrar Locadoras) - `http://localhost:3000/api/v1/rental`
+
+ ```bash
+{
+  "nome": "Localiza Rent a Car",
+  "cnpj": "16.670.085/0001-55",
+  "atividades": "Aluguel de Carros E Gestão de Frotas",
+  "endereco": [
+               {
+                 "cep": "96200-200",
+                 "number":"1234",
+                 "isFilial": false
+               }
+              [
+  }
+ ```
+GET(Listar Locadoras) - `http://localhost:3000/api/v1/rental` <br>
+GET(Listar por ID) - `http://localhost:3000/api/v1/rental/{id}` <br>
+GET(Listar por query) - `http://localhost:3000/api/v1/rental/?cnpj=16.670.085/0001-55`
+
+```bash
+{
+    "Locadoras": [
+        {
+            "_id": "62098afd2424c499d5ca55cf",
+            "nome": "Localiza Rent a Car",
+            "cnpj": "16670085000155",
+            "atividades": "Aluguel de Carros E Gestão de Frotas",
+            "endereco": [
+                {
+                    "cep": "52031-210",
+                    "logradouro": "Rua Ledinha",
+                    "complemento": "",
+                    "number": 1234,
+                    "isFilial": false,
+                    "bairro": "Campo Grande",
+                    "localidade": "Recife",
+                    "uf": "PE"
+                }
+            ]
+        }
+    ],
+    "total": 1,
+    "limit": 100,
+    "offsets": 1,
+    "offset": 1
+}
+ ```
+ PUT(Atualizar Locadoras) - `http://localhost:3000/api/v1/rental/{id}`
+
+ ```bash
+{
+    "Locadoras": [
+        {
+            "_id": "62098afd2424c499d5ca55cf",
+            "nome": "Localiza Rent a Car",
+            "cnpj": "16670085000155",
+            "atividades": "Aluguel de Carros E Gestão de Frotas",
+            "endereco": [
+                {
+                    "cep": "52031-210",
+                    "logradouro": "Rua Ledinha",
+                    "complemento": "",
+                    "number": 1234,
+                    "isFilial": false,
+                    "bairro": "Campo Grande",
+                    "localidade": "Recife",
+                    "uf": "PE"
+                }
+            ]
+        }
+    ],
+    "total": 1,
+    "limit": 100,
+    "offsets": 1,
+    "offset": 1
+}
+```
+DELETE(Deletar uma Locadora) - `http://localhost:3000/api/v1/rental/{id}`
 
 # 🔒 Rota de Autenticação
 POST(Autenticar usuário) - `http://localhost:3000/api/v1/authenticate`
@@ -206,28 +300,6 @@ Sou extremamente grato aos nossos instrutores e líderes por todo suporte, conhe
 
 # 📑 Licença
 
-Repositório licenciado pelo MIT
-
 ```bash
-MIT License
-
-Copyright (c) 2022 Matheus
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Repositório licenciado pelo MIT
 ```

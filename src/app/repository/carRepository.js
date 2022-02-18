@@ -4,6 +4,7 @@ class CarRepository {
   async create(payload) {
     return carSchema.create(payload);
   }
+
   async find(payload) {
     const myCustomLabels = {
       totalDocs: 'total',
@@ -22,18 +23,29 @@ class CarRepository {
       limit: 100,
       customLabels: myCustomLabels
     };
-    return carSchema.paginate(payload,options,{});
+    return carSchema.paginate(payload, options, {});
   }
+
   async findId(id) {
-    return carSchema.findOne({ _id: id });
+    return carSchema.findById({ _id: id });
   }
+
   async delete(id) {
-    return carSchema.deleteOne({ _id: id });
+    return carSchema.findByIdAndDelete(id);
   }
+
   async update(id, payload) {
-    await carSchema.updateOne({ _id: id }, payload);
+    return carSchema.findByIdAndUpdate(id, payload, { new: true });
+  }
+
+  async updateAccessorie(id, acessorioId, payload) {
+    await carSchema.updateOne(
+      { _id: id },
+      { $set: { 'acessorios.$[outer].descricao': payload.descricao } },
+      { arrayFilters: [{ 'outer._id': acessorioId }] }
+    );
     return carSchema.findOne({ _id: id });
   }
 }
 
-module.exports = new CarRepository;
+module.exports = new CarRepository();

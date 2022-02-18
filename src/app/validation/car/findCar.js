@@ -1,5 +1,4 @@
 const Joi = require('joi').extend(require('@joi/date'));
-const Erros = require('../../utils/Error/Erros.js');
 
 module.exports = async (req, res, next) => {
   try {
@@ -10,10 +9,13 @@ module.exports = async (req, res, next) => {
       acessorios: Joi.string().min(1).max(25).trim(),
       quantidadePassageiros: Joi.number().min(1).max(5)
     });
-    const { error } = await validation.validate(req.query, { abortEarl: true });
+    const { error } = await validation.validate(req.query, { abortEarly: true });
     if (error) throw error;
     return next();
   } catch (error) {
-    return Erros.badRequest(res, error.message);
+    return res.status(400).json({
+      description: error.details[0].path[0],
+      name: error.message
+    });
   }
 };
