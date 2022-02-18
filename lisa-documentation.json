@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https:/math-compass-lisa.herokuapp.com/api/v1",
+      "url": "https://math-compass-lisa.herokuapp.com/api/v1",
       "description": "Heroku server"
     },
     {
