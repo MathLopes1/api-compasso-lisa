@@ -1,4 +1,5 @@
 const carService = require('../service/carService.js');
+const pagination = require('../utils/paginate/carPaginate.js');
 
 class CarController {
   async create(req, res) {
@@ -16,7 +17,7 @@ class CarController {
   async find(req, res) {
     try {
       const data = await carService.find(req.query);
-      return res.status(200).json(data);
+      return res.status(200).json(pagination(data));
     } catch (error) {
       return res.status(error.statusCode).json({
         description: error.description,
