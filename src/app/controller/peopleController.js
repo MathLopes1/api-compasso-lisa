@@ -1,4 +1,5 @@
 const peopleService = require('../service/peopleService.js');
+const pagination = require('../utils/paginate/peoplePaginate.js');
 
 class PeopleController {
   async create(req, res) {
@@ -16,7 +17,7 @@ class PeopleController {
   async find(req, res) {
     try {
       const data = await peopleService.find(req.query);
-      return res.status(200).json(data);
+      return res.status(200).json(pagination(data));
     } catch (error) {
       return res.status(error.statusCode).json({
         description: error.description,

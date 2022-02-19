@@ -1,4 +1,5 @@
 const rentalService = require('../service/rentalService.js');
+const pagination = require('../utils/paginate/rentalPaginate.js');
 
 class RentalController {
   async create(req, res) {
@@ -17,7 +18,7 @@ class RentalController {
   async find(req, res) {
     try {
       const data = await rentalService.find(req.query);
-      return res.status(200).json(data);
+      return res.status(200).json(pagination(data));
     } catch (error) {
       return res.status(error.statusCode).json({
         description: error.description,
