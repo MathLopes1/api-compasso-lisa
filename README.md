@@ -11,6 +11,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Postman](https://www.postman.com/)
 - [MongoDB](https://www.mongodb.com/)
 - [Swagger](https://swagger.io/)
+- [Heroku](https://dashboard.heroku.com/)
 
 ### Pré-requisitos
 É importante a instalação das tecnologias utilizadas descritas acima. Além disso, é preciso um editor para trabalhar com o código. Utilizamos o [VSCode](https://code.visualstudio.com/)
@@ -284,8 +285,21 @@ POST(Autenticar usuário) - `http://localhost:3000/api/v1/authenticate`
   "senha": "123456"
 }
 ```
+# 👽 Rota de Documentação
+Documentação - `http://localhost:3000/api/v1/api-docs`
+
+# ⚙️Deploy
+O Projeto foi disponibilizado através do deploy na plataforma Heroku. Uma plataforma de nuvem como serviço criada em 2007. 
+- [Confira a aplicação no Heroku - Rota de Documentação](https://math-compass-lisa.herokuapp.com/api/v1/api-docs/)
+```bash
+ As demais rotas
+```
+- [Rota de carros](https://math-compass-lisa.herokuapp.com/api/v1/car)
+- [Rota de Pessoas](https://math-compass-lisa.herokuapp.com/api/v1/people)
+- [Rota de Locadora](https://math-compass-lisa.herokuapp.com/api/v1/rental)
+
 ## Desenvolvedor :man_technologist::trophy:	
-<b>Maheus Lopes da Silva</b> <br>
+<b>Matheus Lopes da Silva</b> <br>
 <p>Bolsista da Compass, desenvolvi essa API como resposta para o desafio final do programa. Agradeço muito pela oportunidade de evoluir nesse programa de bolsas. Foi uma etapa muito importante na minha vida, me mostrando um rumo de estudos a seguir.</p> #DreamBigger
 
 ## Agradecimentos
@@ -300,6 +314,8 @@ Sou extremamente grato aos nossos instrutores e líderes por todo suporte, conhe
 
 # 📑 Licença
 
-```bash
 Repositório licenciado pelo MIT
+
+```bash
+MIT License
 ```
