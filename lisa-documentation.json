@@ -16,11 +16,11 @@
   "servers": [
     {
       "url": "https://math-compass-lisa.herokuapp.com/api/v1",
-      "description": "Heroku server"
+      "description": "Heroku"
     },
     {
       "url": "http://localhost:3000/api/v1",
-      "description": "API COMPASSO LISA"
+      "description": "Local"
     }
   ],
   "tags": [
