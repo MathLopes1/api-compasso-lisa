@@ -87,7 +87,7 @@ describe('TEST - FEATURES THE CAR', () => {
     expect(res.statusCode).toBe(200);
   });
 
-  it('GET ID - CARS(INVALID)', async () => {
+  it('GET ID - CARS(NOT FOUND)', async () => {
     const res = await supertest(App).get(`/api/v1/car/61f328a531430eea88eb7742`).set('authorization', token);
     expect(res.statusCode).toBe(404);
   });
